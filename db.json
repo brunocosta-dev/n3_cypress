@@ -1,0 +1,160 @@
+{
+  "users": [
+    {
+      "id": 101,
+      "name": "Alex Costa",
+      "userName": "alex.c",
+      "password": "123",
+      "email": "alex.costa@tech.com"
+    },
+    {
+      "id": 102,
+      "name": "Beatriz Lima",
+      "userName": "bia_lima",
+      "password": "456",
+      "email": "beatriz.l@viagens.net"
+    },
+    {
+      "id": 103,
+      "name": "Carlos Mello",
+      "userName": "c.mello",
+      "password": "789",
+      "email": "carlos.mello@arte.org"
+    },
+    {
+      "id": 104,
+      "name": "Diana Rocha",
+      "userName": "dianar",
+      "password": "abc",
+      "email": "diana.rocha@cozinha.br"
+    },
+    {
+      "id": 105,
+      "name": "Eduardo Neves",
+      "userName": "edunv",
+      "password": "xyz",
+      "email": "eduardo.neves@sports.com"
+    }
+  ],
+  "photos": [
+    {
+      "idUser": 101,
+      "id": 201,
+      "type": "image/jpeg",
+      "description": "Foto de um novo protótipo de drone.",
+      "createDat": "2024-11-20T10:00:00Z"
+    },
+    {
+      "idUser": 102,
+      "id": 202,
+      "type": "image/png",
+      "description": "Pôr do sol na praia de Copacabana.",
+      "createDat": "2024-11-20T15:30:00Z"
+    },
+    {
+      "idUser": 103,
+      "id": 203,
+      "type": "image/webp",
+      "description": "Desenho digital abstrato.",
+      "createDat": "2024-11-21T09:15:00Z"
+    },
+    {
+      "idUser": 104,
+      "id": 204,
+      "type": "image/jpeg",
+      "description": "Prato de lasanha que preparei hoje.",
+      "createDat": "2024-11-21T18:45:00Z"
+    },
+    {
+      "idUser": 105,
+      "id": 205,
+      "type": "image/gif",
+      "description": "Lance incrível no jogo de basquete.",
+      "createDat": "2024-11-22T11:20:00Z"
+    }
+  ],
+  "posts": [
+    {
+      "idUser": 101,
+      "id": 301,
+      "category": "Tecnologia",
+      "content": "Análise das novidades do último evento de lançamentos.",
+      "createdAt": "2024-11-22T14:00:00Z"
+    },
+    {
+      "idUser": 102,
+      "id": 302,
+      "category": "Viagem",
+      "content": "Roteiro de 7 dias pela Patagônia, imperdível!",
+      "createdAt": "2024-11-23T08:30:00Z"
+    },
+    {
+      "idUser": 103,
+      "id": 303,
+      "category": "Arte",
+      "content": "Discussão sobre o uso de cores primárias na pintura.",
+      "createdAt": "2024-11-23T12:45:00Z"
+    },
+    {
+      "idUser": 104,
+      "id": 304,
+      "category": "Culinária",
+      "content": "Melhores técnicas para massas caseiras perfeitas.",
+      "createdAt": "2024-11-24T10:10:00Z"
+    },
+    {
+      "idUser": 105,
+      "id": 305,
+      "category": "Esportes",
+      "content": "Previsões para a final do campeonato de vôlei.",
+      "createdAt": "2024-11-24T16:55:00Z"
+    }
+  ],
+  "comments": [
+    {
+      "idTargetUser": 101,
+      "targetType": "photo",
+      "targetId": 201,
+      "id": 401,
+      "conteudo": "Drone sensacional! Onde posso comprar?",
+      "idAutor": 102,
+      "dataCriacao": "2024-11-20T11:30:00Z"
+    },
+    {
+      "idTargetUser": 102,
+      "targetType": "photo",
+      "targetId": 202,
+      "id": 402,
+      "conteudo": "Que luz linda! A foto ficou incrível.",
+      "idAutor": 104,
+      "dataCriacao": "2024-11-20T16:05:00Z"
+    },
+    {
+      "idTargetUser": 103,
+      "targetType": "post",
+      "targetId": 303,
+      "id": 403,
+      "conteudo": "Ótimo post, as cores dão vida à tela.",
+      "idAutor": 105,
+      "dataCriacao": "2024-11-23T13:30:00Z"
+    },
+    {
+      "idTargetUser": 104,
+      "targetType": "post",
+      "targetId": 304,
+      "id": 404,
+      "conteudo": "Segui o passo a passo e a massa ficou perfeita! Obrigado!",
+      "idAutor": 101,
+      "dataCriacao": "2024-11-24T12:00:00Z"
+    },
+    {
+      "idTargetUser": 105,
+      "targetType": "post",
+      "targetId": 305,
+      "id": 405,
+      "conteudo": "Acho que o time X tem mais chances. Veremos!",
+      "idAutor": 102,
+      "dataCriacao": "2024-11-24T18:15:00Z"
+    }
+  ]
+}
