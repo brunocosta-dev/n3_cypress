@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Conteúdo Principal e Formulário -->
+    <main>
+        <div class="form-container">
+            
+            <!-- Título da Seção -->
+            <h1 class="title">
+                CADASTRAR USUÁRIO
+            </h1>
+            <p class="subtitle">
+                Crie o seu usuário
+            </p>
+
+            <!-- Formulário -->
+            <form action="index.html" method="POST" class="form-content">
+
+                <!-- Campo Nome -->
+                <div class="form-group">
+                    <input type="text" id="nome" name="nome" placeholder="Nome" required
+                        class="input-field">
+                </div>
+
+                <!-- Campo Usuário -->
+                <div class="form-group">
+                    <input type="text" id="usuario" name="usuario" placeholder="Usuário" required
+                        class="input-field">
+                </div>
+
+                <!-- Campo Email -->
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email" required
+                        class="input-field">
+                </div>
+
+                <!-- Campo Senha -->
+                <div class="form-group">
+                    <input type="text" id="senha" name="senha" placeholder="Senha" required
+                        class="input-field">
+                </div>
+
+                <!-- Botão CRIAR -->
+                <div class="button-container">
+                    <button type="submit" class="btn-submit">
+                        CRIAR
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+</html>
