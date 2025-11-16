@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMMENTS By YAN</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<header>
+        <nav>
+            <div class="logo">
+                Teste de Software
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Post</a>
+                <a href="#" class="nav-link">Album</a>
+                <a href="todos.html" class="nav-link">Todos</a>
+                <a href="#" class="nav-link active">Comments</a>
+                <a href="index.html" class="nav-link logout">Log-out</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+
+            <!-- Título -->
+            <h3 class="title">
+                PUBLICAR COMENTÁRIO
+            </h3>
+          
+
+            <!-- Formulário -->
+            <form class="form-content">
+
+                <!-- Nome do usuário logado (oculto) -->
+                <input type="hidden" id="usuarioLogado" value="Usuário Logado">
+
+                <!-- Campo de comentário -->
+                <div class="form-group">
+                    <textarea id="comentario" name="comentario" placeholder="Escreva algo..." required class="input-field" style="height: 120px;"></textarea>
+                </div>
+
+             
+
+                <!-- Visibilidade -->
+                <label style="margin-top: 15px;">Visibilidade: </label>
+                <label><input type="radio" name="visibilidade" id="vis1"> Público</label>
+                <label><input type="radio" name="visibilidade" id="vis2"> Amigos</label>
+                <label><input type="radio" name="visibilidade" id="vis3"> Somente eu</label>
+
+           
+
+                <!-- Botão -->
+                <div class="button-container">
+                    <button type="submit" class="btn-submit" id="btn-submit">
+                        PUBLICAR
+                    </button>
+                </div>

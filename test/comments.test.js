@@ -281,5 +281,6 @@ describe("Testes de Comentários", () => {
 
       (() => comments.deletarComentario(1, "photo", 1, 99)).should.throw("Comentário não encontrado.");
     });
+    /*TESTES DA N3 ABAIXO */
   });
 });
