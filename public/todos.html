@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho de Navegação -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/menu" class="nav-link">Teste de Software</a>
+            </div>
+            <div class="nav-links">
+                <a href="/posts" class="nav-link">Post</a>
+                <a href="/albums" class="nav-link">Album</a>
+                <a href="/todos" class="nav-link active">Todos</a>
+                <a href="/comments" class="nav-link">Comments</a>
+                <a href="/" class="nav-link logout">Log-out</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal e Formulário -->
+    <main>
+        <div class="form-container">
+            
+            <!-- Título da Seção -->
+            <h1 class="title">
+                CADASTRAR TAREFA
+            </h1>
+            <p class="subtitle">
+                Crie a sua tarefa
+            </p>
+
+            <!-- Formulário -->
+            <form action="/todos" method="GET" class="form-content">
+
+                <!-- Campo Responsável -->
+                <div class="form-group">
+                    <input type="text" id="responsavel" name="responsavel" placeholder="Responsável" required
+                        class="input-field">
+                </div>
+
+                <!-- Campo Título -->
+                <div class="form-group">
+                    <input type="text" id="titulo" name="titulo" placeholder="Título" required
+                        class="input-field">
+                </div>
+
+                <!-- Campo Descrição -->
+                <div class="form-group">
+                    <textarea id="descricao" name="descricao" rows="4" placeholder="Descrição" required
+                        class="input-field textarea-field"></textarea>
+                </div>
+
+                <div class="flex-row-form">
+                    <!-- Campo Prazo -->
+                    <div class="row-item">
+                        <label for="prazo" class="row-label">Prazo</label>
+                        <input type="date" id="prazo" name="prazo" 
+                            class="input-field">
+                    </div>
+
+                    <!-- Campo Prioridade (Select) -->
+                    <div class="row-item">
+                        <label for="prioridade" class="row-label">Prioridade</label>
+                        <div class="select-container">
+                            <select id="prioridade" name="prioridade" class="select-field">
+                                <option value="baixa">Baixa</option>
+                                <option value="media">Média</option>
+                                <option value="alta">Alta</option>
+                            </select>
+                            <!-- Ícone de seta personalizado para o Select -->
+                            <svg class="select-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Botão CRIAR -->
+                <div class="button-container">
+                    <button type="submit" class="btn-submit" id="btn-submit">
+                        CRIAR
+                    </button>
+                </div>
+
+                <!-- <p id="todo"></p> -->
+
+            </form>
+        </div>
+    </main>
+    <script>
+        document.getElementById('btn-submit').onclick = () => {
+            const respons = document.getElementById('responsavel').value;
+            const titulo  = document.getElementById('titulo').value;
+            const descr   = document.getElementById('descricao').value;
+            const prazo   = document.getElementById('prazo').value;
+            const prior   = document.getElementById('prioridade').value;
+
+            
+            // document.getElementById('todo').textContent =
+            //     `Responsavel: ${respons},
+            //     Titulo: ${titulo},
+            //     Descricao: ${descr},
+            //     Prazo: ${prazo},
+            //     Prioridade: ${prior}`;
+
+            alert(
+                `Responsavel: ${respons}, Titulo: ${titulo}, Descricao: ${descr}, Prazo: ${prazo}, Prioridade: ${prior}`
+            );
+        };
+    </script>
+</body>
+</html>
