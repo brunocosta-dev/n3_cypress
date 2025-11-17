@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Conteúdo Principal e Formulário -->
+    <main>
+        <div class="form-container">
+            
+            <!-- Título da Seção -->
+            <h1 class="title">
+                CADASTRAR USUÁRIO
+            </h1>
+            <p class="subtitle">
+                Crie o seu usuário
+            </p>
+
+            <!-- Formulário -->
+            <form action="index.html" method="POST" class="form-content">
+
+                <!-- Campo Nome -->
+                <div class="form-group">
+                    <input type="text" id="nome" name="nome" placeholder="Nome" required
+                        class="input-field">
+                </div>
+
+                <!-- Campo Usuário -->
+                <div class="form-group">
+                    <input type="text" id="usuario" name="usuario" placeholder="Usuário" required
+                        class="input-field">
+                </div>
+
+                <label>Gênero: </label>
+                <label><input type="radio" name="radio" id="radio1"> Masculino</label>
+                <label><input type="radio" name="radio" id="radio2"> Femnino</label>
+                <label><input type="radio" name="radio" id="radio3"> Outro</label>
+
+                <!-- Campo Email -->
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="Email" required
+                        class="input-field">
+                </div>
+
+                <!-- Campo Senha -->
+                <div class="form-group">
+                    <input type="password" id="senha" name="senha" placeholder="Senha" required
+                        class="input-field">
+                </div>
+
+                <!-- CheckBox -->
+                <label><input type="checkbox" id="checkbox"> Eu concordo com os termos</label>
+
+                <!-- Botão CRIAR -->
+                <div class="button-container">
+                    <button type="submit" class="btn-submit" id="btn-submit">
+                        CRIAR
+                    </button>
+                </div>
+
+                <p id="user"></p>
+
+            </form>
+        </div>
+    </main>
+    <script>
+        document.getElementById('btn-submit').onclick = () => {
+        const nome  = document.getElementById('nome').value;
+        const user  = document.getElementById('usuario').value;
+        const r1 = document.getElementById('radio1').checked;
+        const r2 = document.getElementById('radio2').checked;
+        const r3 = document.getElementById('radio3').checked;
+        const senha = document.getElementById('senha').value;
+        const email = document.getElementById('email').value;
+        const cb = document.getElementById('checkbox').checked;
+
+
+        document.getElementById('user').textContent =
+            `Nome: ${nome},
+             User: ${user},
+             Genero: ${r1 ? 'Masculino' : r2 ? 'Feminino' : r3 ? 'Outro' : 'None'}
+             Senha: ${senha}
+             Email: ${email}
+             Concordancia com os Termos: ${cb}`;
+        };
+    </script>
+</body>
+</html>
