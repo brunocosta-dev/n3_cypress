@@ -67,6 +67,10 @@ header nav {
     color: #e30000;
 }
 
+.nav-link.return:hover {
+    color: #e30000;
+}
+
 .nav-link.active {
     font-weight: bold;
     border-bottom: 2px solid var(--primary-text);
@@ -132,6 +136,12 @@ main {
 .textarea-field {
     resize: none;
     min-height: 100px;
+}
+
+.radio-field{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between
 }
 
 /* Linha: Prazo e Prioridade (Responsivo) */
