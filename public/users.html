@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Cabeçalho de Navegação -->
+    <header>
+        <nav>
+            <!-- Ajustar Classe -->
+            <div class="logo">
+                <a href="/" class="nav-link return">« Retornar</a>
+            </div>
+        </nav>
+    </header>
+
     <!-- Conteúdo Principal e Formulário -->
     <main>
         <div class="form-container">
@@ -20,7 +31,7 @@
             </p>
 
             <!-- Formulário -->
-            <form action="index.html" method="POST" class="form-content">
+            <form action="/" method="GET" class="form-content">
 
                 <!-- Campo Nome -->
                 <div class="form-group">
@@ -34,10 +45,13 @@
                         class="input-field">
                 </div>
 
-                <label>Gênero: </label>
-                <label><input type="radio" name="radio" id="radio1"> Masculino</label>
-                <label><input type="radio" name="radio" id="radio2"> Femnino</label>
-                <label><input type="radio" name="radio" id="radio3"> Outro</label>
+                <!-- Radio Gênero -->
+                <div class="radio-field">
+                    <label>Gênero: </label>
+                    <label><input type="radio" name="radio" id="radio1"> Masculino</label>
+                    <label><input type="radio" name="radio" id="radio2"> Femnino</label>
+                    <label><input type="radio" name="radio" id="radio3"> Outro</label>
+                </div>
 
                 <!-- Campo Email -->
                 <div class="form-group">
@@ -68,23 +82,23 @@
     </main>
     <script>
         document.getElementById('btn-submit').onclick = () => {
-        const nome  = document.getElementById('nome').value;
-        const user  = document.getElementById('usuario').value;
-        const r1 = document.getElementById('radio1').checked;
-        const r2 = document.getElementById('radio2').checked;
-        const r3 = document.getElementById('radio3').checked;
-        const senha = document.getElementById('senha').value;
-        const email = document.getElementById('email').value;
-        const cb = document.getElementById('checkbox').checked;
+            const nome  = document.getElementById('nome').value;
+            const user  = document.getElementById('usuario').value;
+            const r1 = document.getElementById('radio1').checked;
+            const r2 = document.getElementById('radio2').checked;
+            const r3 = document.getElementById('radio3').checked;
+            const senha = document.getElementById('senha').value;
+            const email = document.getElementById('email').value;
+            const cb = document.getElementById('checkbox').checked;
 
 
-        document.getElementById('user').textContent =
-            `Nome: ${nome},
-             User: ${user},
-             Genero: ${r1 ? 'Masculino' : r2 ? 'Feminino' : r3 ? 'Outro' : 'None'}
-             Senha: ${senha}
-             Email: ${email}
-             Concordancia com os Termos: ${cb}`;
+            document.getElementById('user').textContent =
+                `Nome: ${nome},
+                User: ${user},
+                Genero: ${r1 ? 'Masculino' : r2 ? 'Feminino' : r3 ? 'Outro' : 'None'},
+                Senha: ${senha},
+                Email: ${email},
+                Concordancia com os Termos: ${cb}`;
         };
     </script>
 </body>
