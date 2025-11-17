@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Tarefas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho de Navegação -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="/menu" class="nav-link">Teste de Software</a>
+            </div>
+            <div class="nav-links">
+                <a href="/posts" class="nav-link active">Post</a>
+                <a href="/albums" class="nav-link">Album</a>
+                <a href="/todos" class="nav-link">Todos</a>
+                <a href="/comments" class="nav-link">Comments</a>
+                <a href="/" class="nav-link logout">Log-out</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal e Formulário -->
+    <main>
+        <div class="form-container">
+            
+            <!-- Título da Seção -->
+            <h1 class="title">
+                CADASTRAR POST
+            </h1>
+            <p class="subtitle">
+                Adicione o seu post
+            </p>
+
+            <!-- Formulário -->
+            <form action="/post" method="GET" class="form-content">
+
+                <!-- Campo Título -->
+                <div class="form-group">
+                    <input type="text" id="titulo" name="titulo" placeholder="Título" required
+                        class="input-field">
+                </div>
+
+                <!-- Campo Conteudo -->
+                <div class="form-group">
+                    <textarea id="conteudo" name="conteudo" rows="4" placeholder="Adicione o conteudo do seu post" required
+                        class="input-field textarea-field"></textarea>
+                </div>
+
+                <div class="flex-row-form">
+
+                    <!-- Campo Categoria (Select) -->
+                    <div class="row-item">
+                        <label for="categoria" class="row-label">Categoria</label>
+                        <div class="select-container">
+                            <select id="categoria" name="categoria" class="select-field">
+                                <option value="politica">Política</option>
+                                <option value="culinaria">Culinária</option>
+                                <option value="jogos">Jogos</option>
+                                <option value="tecnologia">Tecnologia</option>
+                                <option value="musica">Música</option>
+                            </select>
+                            <!-- Ícone de seta personalizado para o Select -->
+                            <svg class="select-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Botão CRIAR -->
+                <div class="button-container">
+                    <button type="submit" class="btn-submit" id="btn-submit">
+                        CRIAR
+                    </button>
+                </div>
+
+                <!-- <p id="todo"></p> -->
+
+            </form>
+        </div>
+    </main>
+    <script>
+        document.getElementById('btn-submit').onclick = () => {
+            const title  = document.getElementById('titulo').value;
+            const content   = document.getElementById('conteudo').value;
+            const category   = document.getElementById('categoria').value;
+
+            
+            // document.getElementById('todo').textContent =
+            //     `Responsavel: ${respons},
+            //     Titulo: ${titulo},
+            //     Descricao: ${descr},
+            //     Prazo: ${prazo},
+            //     Prioridade: ${prior}`;
+
+            alert(
+                `Titulo: ${title}, Conteudo: ${content}, Categoria: ${category}`
+            );
+        };
+    </script>
+</body>
+</html>
