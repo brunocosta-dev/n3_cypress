@@ -1,0 +1,72 @@
+config:
+  target: "http://localhost:3000"
+  tls:
+    rejectUnauthorized: false
+  phases:
+    - duration: 30
+      arrivalRate: 20
+      name: "Carga de 20 VUs/s para /posts"
+    - duration: 30
+      arrivalRate: 50
+      name: "Carga de 50 VUs/s para /posts"
+    - duration: 30
+      arrivalRate: 100
+      name: "Carga de 100 VUs/s para /posts"
+  defaults:
+    headers:
+      Content-Type: "application/json"
+      X-User-ID: "{{ user }}"
+  payload:
+    path: "users.csv"
+    fields: "user"
+    order: "round-robin"
+scenarios:
+  - name: "Acessar Endpoint /posts"
+    flow:
+     - get:
+          url: "/posts"
+          expect:
+            - statusCode: 200
+          think: 2
+  - name: "Acessar Endpoint /users"
+    flow:
+     - get:
+          url: "/users"
+          expect:
+            - statusCode: 200
+          think: 2
+  - name: "Acessar Endpoint /comments"
+    flow:
+     - get:
+          url: "/comments"
+          expect:
+            - statusCode: 200
+          think: 2
+defaults:
+  - phase: 0
+    overrides:
+      - scenario: "Acessar /post"
+        weight: 100
+      - scenario: "Acessar /users"
+        weight: 0
+      - scenario: "Acessar /comments"
+        weight: 0
+  - phase: 1
+    overrides:
+      - scenario: "Acessar /post"
+        weight: 50
+      - scenario: "Acessar /users"
+        weight: 50
+      - scenario: "Acessar /comments"
+        weight: 0
+  - phase: 2
+    overrides:
+      - scenario: "Acessar /post"
+        weight: 33
+      - scenario: "Acessar /users"
+        weight: 33
+      - scenario: "Acessar /comments"
+        weight: 34
+
+
+
