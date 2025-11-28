@@ -47,6 +47,13 @@ test.describe('Testes de UI para a Página de Menu', () => {
     await expect(page).toHaveURL('http://localhost:3000/todos');
   });
 
+  test('Deve validar redirecionamento pelo botão COMMENTS', async ({ page }) => {
+    await expect(page.getByRole('button', { name: 'COMMENTS' })).toBeVisible();
+
+    await page.getByRole('button', { name: 'COMMENTS' }).click();
+    await expect(page).toHaveURL('http://localhost:3000/comments');
+  });
+
   test('Deve validar navegação pelo link "Teste de Software" no Navbar', async ({ page }) => {
     const navbar = page.locator('nav');
 
@@ -82,6 +89,15 @@ test.describe('Testes de UI para a Página de Menu', () => {
 
     await navbar.getByRole('link', { name: 'Todos' }).click();
     await expect(page).toHaveURL('http://localhost:3000/todos');
+  });
+
+  test('Deve validar navegação pelo link "Comments" no Navbar', async ({ page }) => {
+    const navbar = page.locator('nav');
+
+    await expect(navbar.getByRole('link', { name: 'Comments' })).toBeVisible();
+
+    await navbar.getByRole('link', { name: 'Comments' }).click();
+    await expect(page).toHaveURL('http://localhost:3000/comments');
   });
 
   test('Deve validar navegação pelo link "Log-out" no Navbar', async ({ page }) => {
