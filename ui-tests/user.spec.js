@@ -152,8 +152,9 @@ test.describe('Testes de UI para a Página de Users', () => {
       await expect(page.locator('#btn-submit'), 'Botão #btn-submit deveria existir').toBeVisible();
     });
 
-    await test.step('Lista de usuários deve estar presente', async () => {
-      await expect(page.locator('#lista-users'), 'Elemento #lista-users deveria existir').toBeVisible();
+    await test.step('Lista de usuários deve ter ao menos 1 usuário', async () => {
+      const listUsers = page.locator('#lista-users li');
+      await expect(listUsers, 'A lista deveria conter ao menos 1 usuário').toHaveCount(1);
     });
 
     await test.step('Campo email deve rejeitar valores inválidos', async () => {
@@ -166,7 +167,7 @@ test.describe('Testes de UI para a Página de Users', () => {
       let dialogOpened = false;
 
       page.on('dialog', () => {
-        dialogOpened = true; // Significa que o submit ocorreu = erro
+        dialogOpened = true; // Significa que o submit ocorreu
       });
 
       await page.click('#btn-submit');
