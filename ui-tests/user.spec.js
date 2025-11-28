@@ -142,4 +142,38 @@ test.describe('Testes de UI para a Página de Users', () => {
 
   });
 
+  test('Teste de ERROS de UI', async ({ page }) => {
+
+    await test.step('Verificar se o link "Retornar" existe', async () => {
+      await expect(page.locator('.nav-link.return'), 'Link "Retornar" deveria existir').toBeVisible();
+    });
+
+    await test.step('Verificar se o botão CRIAR está presente', async () => {
+      await expect(page.locator('#btn-submit'), 'Botão #btn-submit deveria existir').toBeVisible();
+    });
+
+    await test.step('Lista de usuários deve estar presente', async () => {
+      await expect(page.locator('#lista-users'), 'Elemento #lista-users deveria existir').toBeVisible();
+    });
+
+    await test.step('Campo email deve rejeitar valores inválidos', async () => {
+      await page.fill('#email', 'email_invalido');
+      const isValid = await page.$eval('#email', el => el.checkValidity());
+      expect(isValid, 'Campo email aceitou valor inválido').toBeFalsy();
+    });
+
+    await test.step('Formulário não deve permitir submit com campos vazios', async () => {
+      let dialogOpened = false;
+
+      page.on('dialog', () => {
+        dialogOpened = true; // Significa que o submit ocorreu = erro
+      });
+
+      await page.click('#btn-submit');
+
+      expect(dialogOpened, 'Formulário permitiu submit com campos vazios').toBeFalsy();
+    });
+
+  });
+
 });
