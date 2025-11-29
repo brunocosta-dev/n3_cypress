@@ -30,7 +30,7 @@
             
             <!-- Título da Seção -->
             <h1 class="title">
-                CADASTRAR TAREFA
+                Cadastrar Tarefa
             </h1>
             <p class="subtitle">
                 Crie a sua tarefa
@@ -90,31 +90,66 @@
                     </button>
                 </div>
 
-                <!-- <p id="todo"></p> -->
+                <h2>Tarefas Cadastradas</h2>
+                <ul id="lista-todos"></ul>
 
             </form>
         </div>
     </main>
     <script>
-        document.getElementById('btn-submit').onclick = () => {
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
             const respons = document.getElementById('responsavel').value;
             const titulo  = document.getElementById('titulo').value;
             const descr   = document.getElementById('descricao').value;
             const prazo   = document.getElementById('prazo').value;
             const prior   = document.getElementById('prioridade').value;
 
-            
-            // document.getElementById('todo').textContent =
-            //     `Responsavel: ${respons},
-            //     Titulo: ${titulo},
-            //     Descricao: ${descr},
-            //     Prazo: ${prazo},
-            //     Prioridade: ${prior}`;
-
             alert(
                 `Responsavel: ${respons}, Titulo: ${titulo}, Descricao: ${descr}, Prazo: ${prazo}, Prioridade: ${prior}`
             );
-        };
+
+            // Envia para API
+            fetch('/api/todos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    responsavel: respons,
+                    titulo,
+                    descricao: descr,
+                    prazo,
+                    prioridade: prior
+                })
+            })
+            .then(res => res.json())
+            .then(novo => {
+                const lista = document.getElementById('lista-todos');
+                lista.innerHTML += `
+                    <li>
+                        <strong>${novo.id}</strong> - 
+                        ${novo.titulo} | 
+                        ${novo.responsavel} | 
+                        ${novo.prioridade} | 
+                        ${novo.prazo}
+                    </li>`;
+            });
+        });
+        fetch('/api/todos')
+          .then(res => res.json())
+          .then(todos => {
+            const lista = document.getElementById('lista-todos');
+            lista.innerHTML = todos
+                .map(t => `
+                    <li>
+                        <strong>${t.id}</strong> - 
+                        ${t.titulo} | 
+                        ${t.responsavel} | 
+                        ${t.prioridade} | 
+                        ${t.prazo}
+                    </li>`)
+                .join('');
+        });
     </script>
 </body>
 </html>
