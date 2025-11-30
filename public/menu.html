@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Tarefas</title>
+    <title>Menu de Opções</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,13 +12,14 @@
     <header>
         <nav>
             <div class="logo">
-                Teste de Software
+                <a href="/menu" class="nav-link">Teste de Software</a>
             </div>
             <div class="nav-links">
-                <a href="#" class="nav-link">Post</a>
-                <a href="#" class="nav-link">Album</a>
-                <a href="todos.html" class="nav-link">Todos</a>
-                <a href="#" class="nav-link">Comments</a>
+                <a href="/posts" class="nav-link">Post</a>
+                <a href="/albums" class="nav-link">Album</a>
+                <a href="/todos" class="nav-link">Todos</a>
+                <a href="/comments" class="nav-link">Comments</a>
+                <a href="/" class="nav-link logout">Log-out</a>
             </div>
         </nav>
     </header>
@@ -29,30 +30,30 @@
             
             <!-- Título da Seção -->
             <h1 class="title">
-                CADASTRAR TAREFA
+                Crie um Novo Registro
             </h1>
             <p class="subtitle">
-                Crie a sua tarefa
+                Selecione uma das opções a baixo
             </p>
 
                 <!-- Botão CRIAR -->
                 <div class="button-container">
-                    <a href="#">
+                    <a href="/posts">
                         <button class="btn-redirect">
                             POST
                         </button>
                     </a>
-                    <a href="#">
+                    <a href="/albums">
                         <button class="btn-redirect">
                             ALBUM
                         </button>
                     </a>
-                    <a href="todos.html">
+                    <a href="/todos">
                         <button class="btn-redirect">
                             TODOS
                         </button>
                     </a>
-                    <a href="#">
+                    <a href="/comments">
                         <button class="btn-redirect">
                             COMMENTS
                         </button>

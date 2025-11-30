@@ -3,24 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Tarefas</title>
+    <title>Cadastro de Usuários</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Cabeçalho de Navegação -->
+    <header>
+        <nav>
+            <!-- Ajustar Classe -->
+            <div class="logo">
+                <a href="/" class="nav-link return">« Retornar</a>
+            </div>
+        </nav>
+    </header>
+
     <!-- Conteúdo Principal e Formulário -->
     <main>
         <div class="form-container">
             
             <!-- Título da Seção -->
             <h1 class="title">
-                CADASTRAR USUÁRIO
+                Cadastrar Usuário
             </h1>
             <p class="subtitle">
                 Crie o seu usuário
             </p>
 
             <!-- Formulário -->
-            <form action="index.html" method="POST" class="form-content">
+            <form action="/" method="GET" class="form-content">
 
                 <!-- Campo Nome -->
                 <div class="form-group">
@@ -34,10 +45,13 @@
                         class="input-field">
                 </div>
 
-                <label>Gênero: </label>
-                <label><input type="radio" name="radio" id="radio1"> Masculino</label>
-                <label><input type="radio" name="radio" id="radio2"> Femnino</label>
-                <label><input type="radio" name="radio" id="radio3"> Outro</label>
+                <!-- Radio Gênero -->
+                <div class="radio-field">
+                    <label>Gênero: </label>
+                    <label><input type="radio" name="radio" id="radio1"> Masculino</label>
+                    <label><input type="radio" name="radio" id="radio2"> Feminino</label>
+                    <label><input type="radio" name="radio" id="radio3"> Outro</label>
+                </div>
 
                 <!-- Campo Email -->
                 <div class="form-group">
@@ -61,31 +75,71 @@
                     </button>
                 </div>
 
-                <p id="user"></p>
+                <h2>Usuários Cadastrados</h2>
+                <ul id="lista-users"></ul>
 
             </form>
         </div>
     </main>
     <script>
-        document.getElementById('btn-submit').onclick = () => {
-        const nome  = document.getElementById('nome').value;
-        const user  = document.getElementById('usuario').value;
-        const r1 = document.getElementById('radio1').checked;
-        const r2 = document.getElementById('radio2').checked;
-        const r3 = document.getElementById('radio3').checked;
-        const senha = document.getElementById('senha').value;
-        const email = document.getElementById('email').value;
-        const cb = document.getElementById('checkbox').checked;
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
 
+            const nome  = document.getElementById('nome').value;
+            const user  = document.getElementById('usuario').value;
 
-        document.getElementById('user').textContent =
-            `Nome: ${nome},
-             User: ${user},
-             Genero: ${r1 ? 'Masculino' : r2 ? 'Feminino' : r3 ? 'Outro' : 'None'}
-             Senha: ${senha}
-             Email: ${email}
-             Concordancia com os Termos: ${cb}`;
-        };
+            const r1 = document.getElementById('radio1').checked;
+            const r2 = document.getElementById('radio2').checked;
+            const r3 = document.getElementById('radio3').checked;
+            const genero = r1 ? 'Masculino' : r2 ? 'Feminino' : r3 ? 'Outro' : 'Nenhum';
+
+            const senha = document.getElementById('senha').value;
+            const email = document.getElementById('email').value;
+            const cb = document.getElementById('checkbox').checked;
+
+            alert(`Nome: ${nome}, User: ${user}, Genero: ${genero}, Senha: ${senha}, Email: ${email}, Concordancia com os Termos: ${cb}`);
+            
+            // Envia para API
+            fetch('/api/users', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nome,
+                    user,
+                    genero,
+                    senha,
+                    email,
+                    termo: cb
+                })
+            })
+            .then(res => res.json())
+            .then(novo => {
+                const lista = document.getElementById('lista-users');
+                lista.innerHTML += `
+                    <li>
+                        <strong>${novo.id}</strong> - 
+                        ${novo.nome} | 
+                        ${novo.user} | 
+                        ${novo.genero} | 
+                        ${novo.email}
+                    </li>`;
+            });
+        });
+        fetch('/api/users')
+          .then(res => res.json())
+          .then(users => {
+            const lista = document.getElementById('lista-users');
+            lista.innerHTML = users
+                .map(u => `
+                    <li>
+                        <strong>${u.id}</strong> - 
+                        ${u.nome} | 
+                        ${u.user} | 
+                        ${u.genero} | 
+                        ${u.email}
+                    </li>`)
+                .join('');
+        });
     </script>
 </body>
 </html>
