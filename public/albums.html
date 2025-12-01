@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Álbum</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                Teste de Software
+            </div>
+            <div class="nav-links">
+                <a href="/posts" class="nav-link">Post</a>
+                <a href="/albums" class="nav-link active">Album</a>
+                <a href="/todos" class="nav-link">Todos</a>
+                <a href="#" class="nav-link">Comments</a>
+                <a href="/index" class="nav-link logout">Log-out</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="form-container">
+            
+            <h1 class="title">
+                CADASTRAR ÁLBUM
+            </h1>
+            <p class="subtitle">
+                Crie o seu novo álbum
+            </p>
+
+            <form action="/albums" method="GET" class="form-content">
+
+                <div class="form-group">
+                    <input type.text" id="title" name="title" placeholder="Título do Álbum" required
+                        class="input-field">
+                </div>
+                
+                <div class="button-container">
+                    <button type.submit" class="btn-submit">
+                        CRIAR
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+</body>
+<div class="form-container" style="margin-top: 40px;">
+    <h2 class="title" style="font-size: 2rem;">Álbuns Carregados</h2>
+    <ul id="album-list" class="album-list-container">
+        </ul>
+</div>
+
+<script>
+    // Função para buscar álbuns da API local
+    async function carregarAlbuns() {
+        const lista = document.getElementById('album-list');
+        
+        try {
+            // 1. Faz a requisição GET para a nossa API local
+            const response = await fetch('http://localhost:3000/api/albums');
+            
+            // 2. Converte a resposta para JSON
+            const albuns = await response.json();
+
+            // 3. Limpa a lista (caso tenha algo) e exibe os dados
+            lista.innerHTML = ''; // Limpa a lista
+            
+            if (albuns.length === 0) {
+                lista.innerHTML = '<li>Nenhum álbum encontrado.</li>';
+                return;
+            }
+
+            // 4. Cria um <li> para cada álbum retornado
+            albuns.forEach(album => {
+                const item = document.createElement('li');
+                item.textContent = `ID: ${album.id} - Título: ${album.title}`;
+                lista.appendChild(item);
+            });
+
+        } catch (error) {
+            console.error('Falha ao carregar álbuns:', error);
+            lista.innerHTML = '<li>Falha ao carregar dados da API.</li>';
+        }
+    }
+
+    // Roda a função quando a página termina de carregar
+    document.addEventListener('DOMContentLoaded', carregarAlbuns);
+
+</script>
+</body>
+</html>
+</html>

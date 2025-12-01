@@ -12,13 +12,14 @@
     <header>
         <nav>
             <div class="logo">
-                Teste de Software
+                <a href="/menu" class="nav-link">Teste de Software</a>
             </div>
             <div class="nav-links">
-                <a href="#" class="nav-link">Post</a>
-                <a href="#" class="nav-link">Album</a>
-                <a href="todos.html" class="nav-link active">Todos</a>
-                <a href="#" class="nav-link">Comments</a>
+                <a href="/posts" class="nav-link">Post</a>
+                <a href="/albums" class="nav-link">Album</a>
+                <a href="/todos" class="nav-link active">Todos</a>
+                <a href="/comments" class="nav-link">Comments</a>
+                <a href="/" class="nav-link logout">Log-out</a>
             </div>
         </nav>
     </header>
@@ -29,14 +30,14 @@
             
             <!-- Título da Seção -->
             <h1 class="title">
-                CADASTRAR TAREFA
+                Cadastrar Tarefa
             </h1>
             <p class="subtitle">
                 Crie a sua tarefa
             </p>
 
             <!-- Formulário -->
-            <form action="#" method="POST" class="form-content">
+            <form action="/todos" method="GET" class="form-content">
 
                 <!-- Campo Responsável -->
                 <div class="form-group">
@@ -74,9 +75,9 @@
                                 <option value="alta">Alta</option>
                             </select>
                             <!-- Ícone de seta personalizado para o Select -->
-                            <!-- <svg class="select-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <svg class="select-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                 <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                            </svg> -->
+                            </svg>
                         </div>
                     </div>
 
@@ -84,14 +85,71 @@
 
                 <!-- Botão CRIAR -->
                 <div class="button-container">
-                    <button type="submit" class="btn-submit">
+                    <button type="submit" class="btn-submit" id="btn-submit">
                         CRIAR
                     </button>
                 </div>
 
+                <h2>Tarefas Cadastradas</h2>
+                <ul id="lista-todos"></ul>
+
             </form>
         </div>
     </main>
+    <script>
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
 
+            const respons = document.getElementById('responsavel').value;
+            const titulo  = document.getElementById('titulo').value;
+            const descr   = document.getElementById('descricao').value;
+            const prazo   = document.getElementById('prazo').value;
+            const prior   = document.getElementById('prioridade').value;
+
+            alert(
+                `Responsavel: ${respons}, Titulo: ${titulo}, Descricao: ${descr}, Prazo: ${prazo}, Prioridade: ${prior}`
+            );
+
+            // Envia para API
+            fetch('/api/todos', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    responsavel: respons,
+                    titulo,
+                    descricao: descr,
+                    prazo,
+                    prioridade: prior
+                })
+            })
+            .then(res => res.json())
+            .then(novo => {
+                const lista = document.getElementById('lista-todos');
+                lista.innerHTML += `
+                    <li>
+                        <strong>${novo.id}</strong> - 
+                        ${novo.titulo} | 
+                        ${novo.responsavel} | 
+                        ${novo.prioridade} | 
+                        ${novo.prazo}
+                    </li>`;
+            });
+        });
+        fetch('/api/todos')
+          .then(res => res.json())
+          .then(todos => {
+            const lista = document.getElementById('lista-todos');
+            lista.innerHTML = todos
+                .map(t => `
+                    <li>
+                        <strong>${t.id}</strong> - 
+                        ${t.titulo} | 
+                        ${t.responsavel} | 
+                        ${t.prioridade} | 
+                        ${t.prazo}
+                    </li>`)
+                .join('');
+        });
+    </script>
 </body>
 </html>
