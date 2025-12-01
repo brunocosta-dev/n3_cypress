@@ -21,7 +21,7 @@ test.describe('Testes de UI para a Página de Posts', ()=>{
         await test.step('Espera que tenha o campo Título do post e conteudo', async () =>{
             
             const campoTituloPost = page.getByPlaceholder('Título');
-            await expect(campoTituloPost).toBeVisible;
+            await expect(campoTituloPost).toBeVisible();
             await expect(campoTituloPost).toHaveAttribute('placeholder', 'Título')
             
             const campoConteudo = page.getByPlaceholder('Adicione o conteudo do seu post');
@@ -41,7 +41,7 @@ test.describe('Testes de UI para a Página de Posts', ()=>{
             await expect(locator).toBeVisible();
         });
         
-        await test.step('Espera visualizar o campo Categora', async () =>{
+        await test.step('Espera alterar o campo de dropdown', async () =>{
             const dropdownCategoria = page.getByLabel('Categoria');
             await dropdownCategoria.selectOption('Tecnologia');
             await expect(dropdownCategoria).toHaveValue('tecnologia');
