@@ -10,9 +10,7 @@
 
     <header>
         <nav>
-            <div class="logo">
-                Teste de Software
-            </div>
+            <div class="logo">Teste de Software</div>
             <div class="nav-links">
                 <a href="/posts" class="nav-link">Post</a>
                 <a href="/albums" class="nav-link active">Album</a>
@@ -25,75 +23,74 @@
 
     <main>
         <div class="form-container">
-            
-            <h1 class="title">
-                CADASTRAR ÁLBUM
-            </h1>
-            <p class="subtitle">
-                Crie o seu novo álbum
-            </p>
+            <h1 class="title">CADASTRAR ÁLBUM</h1>
+            <p class="subtitle">Crie o seu novo álbum</p>
 
-            <form action="/albums" method="GET" class="form-content">
-
+            <form id="album-form" class="form-content">
                 <div class="form-group">
-                    <input type.text" id="title" name="title" placeholder="Título do Álbum" required
-                        class="input-field">
+                    <input type="text" id="title" name="title" placeholder="Título do Álbum" required class="input-field">
                 </div>
-                
                 <div class="button-container">
-                    <button type.submit" class="btn-submit">
-                        CRIAR
-                    </button>
+                    <button type="submit" class="btn-submit">CRIAR</button>
                 </div>
-
             </form>
+        </div>
+
+        <div class="form-container" style="margin-top: 40px;">
+            <h2 class="title" style="font-size: 2rem;">Álbuns Carregados</h2>
+            <ul id="album-list" class="album-list-container">
+                </ul>
         </div>
     </main>
 
-</body>
-<div class="form-container" style="margin-top: 40px;">
-    <h2 class="title" style="font-size: 2rem;">Álbuns Carregados</h2>
-    <ul id="album-list" class="album-list-container">
-        </ul>
-</div>
+    <script>
+        const API_URL = 'http://localhost:3000/api/albums';
 
-<script>
-    // Função para buscar álbuns da API local
-    async function carregarAlbuns() {
-        const lista = document.getElementById('album-list');
-        
-        try {
-            // 1. Faz a requisição GET para a nossa API local
-            const response = await fetch('http://localhost:3000/api/albums');
-            
-            // 2. Converte a resposta para JSON
-            const albuns = await response.json();
+        // Função para carregar álbuns (GET)
+        async function carregarAlbuns() {
+            const lista = document.getElementById('album-list');
+            try {
+                const response = await fetch(API_URL);
+                const albuns = await response.json();
+                
+                lista.innerHTML = '';
+                if (albuns.length === 0) {
+                    lista.innerHTML = '<li>Nenhum álbum encontrado.</li>';
+                    return;
+                }
 
-            // 3. Limpa a lista (caso tenha algo) e exibe os dados
-            lista.innerHTML = ''; // Limpa a lista
-            
-            if (albuns.length === 0) {
-                lista.innerHTML = '<li>Nenhum álbum encontrado.</li>';
-                return;
+                albuns.forEach(album => {
+                    const item = document.createElement('li');
+                    item.textContent = `ID: ${album.id} - Título: ${album.title}`;
+                    lista.appendChild(item);
+                });
+            } catch (error) {
+                console.error('Erro ao carregar:', error);
+                lista.innerHTML = '<li>Erro ao carregar dados.</li>';
             }
-
-            // 4. Cria um <li> para cada álbum retornado
-            albuns.forEach(album => {
-                const item = document.createElement('li');
-                item.textContent = `ID: ${album.id} - Título: ${album.title}`;
-                lista.appendChild(item);
-            });
-
-        } catch (error) {
-            console.error('Falha ao carregar álbuns:', error);
-            lista.innerHTML = '<li>Falha ao carregar dados da API.</li>';
         }
-    }
 
-    // Roda a função quando a página termina de carregar
-    document.addEventListener('DOMContentLoaded', carregarAlbuns);
+        // Função para criar álbum (POST)
+        document.getElementById('album-form').addEventListener('submit', async (e) => {
+            e.preventDefault(); // Impede o recarregamento da página
+            const titleInput = document.getElementById('title');
+            
+            try {
+                await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title: titleInput.value })
+                });
+                
+                titleInput.value = ''; // Limpa o campo
+                carregarAlbuns(); // Recarrega a lista
+            } catch (error) {
+                console.error('Erro ao criar álbum:', error);
+            }
+        });
 
-</script>
+        // Carrega ao iniciar
+        document.addEventListener('DOMContentLoaded', carregarAlbuns);
+    </script>
 </body>
-</html>
 </html>

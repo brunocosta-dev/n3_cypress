@@ -1,9 +1,11 @@
 const express = require('express');
 const path = require('path');
+const cors = require('cors'); // Importante para evitar erros de CORS
 const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use(cors()); // Habilita CORS
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -37,25 +39,18 @@ let users = [
   }
 ];
 
-// GET, retorna todos os usuários
+// GET users
 app.get('/api/users', (req, res) => {
   res.json(users);
 });
 
-// POST, cria novo usuário
+// POST users
 app.post('/api/users', (req, res) => {
   const { nome, user, genero, email, senha, termo } = req.body;
-
   const novoUsuario = {
     id: users.length + 1,
-    nome,
-    user,
-    genero,
-    email,
-    senha,
-    termo
+    nome, user, genero, email, senha, termo
   };
-
   users.push(novoUsuario);
   res.json(novoUsuario);
 });
@@ -72,26 +67,47 @@ let todos = [
   }
 ];
 
-// GET, retorna todas as tarefas
+// GET todos
 app.get('/api/todos', (req, res) => {
   res.json(todos);
 });
 
-// POST, cria nova tarefa
+// POST todos
 app.post('/api/todos', (req, res) => {
   const { responsavel, titulo, descricao, prazo, prioridade } = req.body;
-
   const novaTarefa = {
     id: todos.length + 1,
-    responsavel,
-    titulo,
-    descricao,
-    prazo,
-    prioridade
+    responsavel, titulo, descricao, prazo, prioridade
   };
-
   todos.push(novaTarefa);
   res.json(novaTarefa);
+});
+
+
+// Álbuns 
+
+let albums = [
+  { userId: 1, id: 1, title: 'Fotos dos Bruninhos' }, 
+  { userId: 1, id: 2, title: 'Yan na Praia' }         
+];
+
+// GET albums
+app.get('/api/albums', (req, res) => {
+  console.log('GET /api/albums chamado');
+  res.json(albums);
+});
+
+// POST albums
+app.post('/api/albums', (req, res) => {
+  console.log('POST /api/albums chamado', req.body);
+  const { title } = req.body;
+  const novoAlbum = {
+    userId: 1, // Simulado
+    id: albums.length + 1,
+    title
+  };
+  albums.push(novoAlbum);
+  res.status(201).json(novoAlbum);
 });
 
 app.listen(port, () => console.log(`Server running at http://localhost:${port}`));
