@@ -10,4 +10,6 @@ Video dos testes comments_ui https://drive.google.com/file/d/1Oyg-spc7g4UtvoMQ-W
 
 //Vídeos N3
 
-Vido sobre o test de UI Posts: https://youtu.be/XOjnQ1qvhqw
+Video sobre o test de UI Posts: https://youtu.be/XOjnQ1qvhqw
+Video sobre o test UI da página users e todos: https://drive.google.com/drive/folders/1diV0Z1D5C3QKQVa3_Z7wJq0flJDByJUK?usp=sharing
+Video sobre o test de UI de comments: https://drive.google.com/file/d/1Oyg-spc7g4UtvoMQ-WXE7P-88DCIb3WZ/view?usp=drive_link
