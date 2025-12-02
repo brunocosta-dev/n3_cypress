@@ -45,14 +45,15 @@ Para rodar a cobertura de código (coverage).
   npm run coverage
 ```
 
+Test de UI
+```bash
+  npx playwright test
+```
+
 
 ## Status do Projeto
 
 O projeto está **Finalizado**. Todos os objetivos de teste e cobertura foram alcançados.
-## Referência
-
- - [API REST - JSONPlaceholder](https://jsonplaceholder.typicode.com)
- - [Servidor REST - My JSON Server](https://my-json-server.typicode.com/MarcosViniciusDaSilvaZacchi/n2-testes-api)
 
 ## Autores
 
